@@ -1,0 +1,12 @@
+db:
+  image: mysql
+  volumes:
+  - mysqldata/:/var/lib/mysql
+  environment:
+    MYSQL_ROOT_PASSWORD: foobar
+web:
+  build: .
+  ports:
+    - '80:80'
+  links:
+    - db
