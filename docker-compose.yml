@@ -1,12 +1,29 @@
-db:
-  image: mysql
-  volumes:
-  - mysqldata/:/var/lib/mysql
-  environment:
-    MYSQL_ROOT_PASSWORD: foobar
-web:
-  build: .
-  ports:
-    - '80:80'
-  links:
-    - db
+version: '3'
+services:
+  db:
+    build:
+      context: ./docker/
+      dockerfile: Dockerfile-mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/mysql-utf8.cnf:/etc/mysql/conf.d/mysql-utf8.cnf
+    healthcheck:
+        interval: 30s
+        timeout: 10s
+        retries: 5
+    environment:
+      MYSQL_ROOT_PASSWORD: foobar
+      MYSQL_DATABASE: coral
+      MYSQL_USER: coral
+      MYSQL_PASSWORD: where-is-the-coral-reef
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - '8080:80'
+    links:
+      - db
+volumes:
+  mysqldata:
