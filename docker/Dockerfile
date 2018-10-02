@@ -1,6 +1,6 @@
 FROM php:5.6-apache
 RUN apt-get update && apt-get install git -y
-RUN docker-php-ext-install gettext mysqli
+RUN docker-php-ext-install gettext mysqli mbstring mysqlnd
 
 COPY config/php.ini /usr/local/etc/php/conf.d/
 
