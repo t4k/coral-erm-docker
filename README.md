@@ -39,14 +39,14 @@ This repository allows a base installation of the [CORAL-ERM](https://github.com
 
 ### The containers are running: Now What?
 
- Once the containers are running, you can access the CORAL-ERM installation page by visiting http://localhost:8080/coral/index.html and step through the installation - the documentation for this is located on the [official CORAL-ERM page](http://docs.coral-erm.org/en/latest/install.html).
+ Once the containers are running, you can access the CORAL-ERM installation page by visiting http://localhost:8080/coral and step through the installation - the documentation for this is located on the [official CORAL-ERM page](http://docs.coral-erm.org/en/latest/install.html).
 ### What needs to be done outside of docker-compose?
 
 There is one issue where after CORAL-ERM installation completes, the application would like to remove the write access to the configuration files.
 
  On a basic stack, this can be accomplished by running the following from a Linux command line prompt:
 
-  `docker exec -t coral-docker_web_1 chmod 755 -R /var/www/html/`
+  `docker exec -t coral-erm-docker_web_1 chmod 755 -R /var/www/html/`
 
  This will run a permission change on the needed directories. Once it is complete, you should be able to click the "Try Again" button on the bottom of the error page within CORAL-ERM.
 
