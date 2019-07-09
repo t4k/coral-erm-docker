@@ -1,0 +1,5 @@
+FROM mysql:5.6
+
+COPY mysql-healthcheck /usr/local/bin/
+
+HEALTHCHECK CMD ["mysql-healthcheck"]
